@@ -35,7 +35,7 @@ public struct OnboardingView: View {
                 QuestionView(question: question.title)
                     .padding(.top, 48)
             }
-            .background(viewModel.configuration.textColor)
+            .background(viewModel.configuration.colorPalette.text)
             .padding()
             .frame(maxHeight: .infinity, alignment: .top)
             
@@ -178,10 +178,10 @@ extension Color {
                    .resizable()
                    .scaledToFit()
         },
-        accentColor: Color(hex: "7F8CAA"),
-        backgroundColor: Color(hex: "EAEFEF"),
-        textColor: Color(hex: "333446"),
-        secondaryColor: Color(hex: "B8CFCE"),
+        colorPalette: OnboardingColorPalette(accent: Color(hex: "7F8CAA"),
+                                             background: Color(hex: "EAEFEF"),
+                                             text: Color(hex: "333446"),
+                                             secondary: Color(hex: "B8CFCE")),
         questions: [
             OnboardingQuestion(
                 title: "How many cities are there in Türkiye?",
