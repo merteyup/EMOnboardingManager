@@ -19,6 +19,7 @@ public struct OnboardingView: View {
     @ObservedObject var viewModel: OnboardingViewModel
     @State private var textAnswer: String = ""
     @State private var scaleAnswer: Double = 0.0
+   
 
     public init(viewModel: OnboardingViewModel) {
         self.viewModel = viewModel
@@ -44,7 +45,6 @@ public struct OnboardingView: View {
                 QuestionView(question: question.title)
                     .padding(.top, Paddings.extraExtraHigh)
             }
-            .background(viewModel.configuration.colorPalette.text)
             .padding()
             .frame(maxHeight: .infinity, alignment: .top)
             
@@ -53,10 +53,12 @@ public struct OnboardingView: View {
             VStack {
                 switch question.answerType {
                 case .singleChoice(let options):
-                    SingleChoiceView(options: options) { selected in
-                        viewModel.submitAnswer(selected)
+                    
+                    SingleChoiceView(options: options) { selectedIndex in
+                        print("User selected option at index:", selectedIndex)
+                        viewModel.submitAnswer(selectedIndex)
                     }.frame(maxWidth: .infinity, alignment: .top)
-
+                    
                     
                 case .multipleChoice(options: let options):
                     MultipleChoiceView()
@@ -100,13 +102,32 @@ public struct QuestionView: View {
 }
 
 public struct SingleChoiceView: View {
-    var options: [String]
-    var selected: (Int) -> Void
+    let options: [String]
+    let selected: (Int) -> Void
     
+    @State private var selectedIndex: Int? = nil
+
     public var body: some View {
-        Text("Single Choice View")
+        VStack(alignment: .leading, spacing: 12) {
+            ForEach(options.indices, id: \.self) { index in
+                Button(action: {
+                    selectedIndex = index
+                    selected(index)
+                }) {
+                    HStack {
+                        Image(systemName: selectedIndex == index ? "largecircle.fill.circle" : "circle")
+                            .foregroundColor(.accentColor)
+                        Text(options[index])
+                            .foregroundColor(.primary)
+                    }
+                    .padding(.vertical, 4)
+                }
+                .buttonStyle(PlainButtonStyle())
+            }
+        }
     }
 }
+
 
 public struct ScaleSliderView: View {
     let range: ClosedRange<Double>
@@ -179,7 +200,7 @@ public struct MultipleChoiceView: View {
         questions: [
             OnboardingQuestion(
                 title: "How many cities are there in Türkiye?",
-                answerType: .text
+                answerType: .singleChoice(options: ["Yes", "No", "Sometimes"])
             )
         ],
         onboardingDescriptions: [
