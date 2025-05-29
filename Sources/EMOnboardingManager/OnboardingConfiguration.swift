@@ -5,7 +5,6 @@
 //  Created by Eyüp Mert on 27.05.2025.
 //
 
-
 import SwiftUI
 
 public struct OnboardingConfiguration {
