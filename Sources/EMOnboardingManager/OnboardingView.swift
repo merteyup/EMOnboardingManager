@@ -187,30 +187,5 @@ public struct MultipleChoiceView: View {
 
 
 #Preview {
-    let mockConfiguration = OnboardingConfiguration(
-        logoView: {
-            Image(systemName: "crown")
-                   .resizable()
-                   .scaledToFit()
-        },
-        colorPalette: OnboardingColorPalette(accent: Color(hex: "7F8CAA"),
-                                             background: Color(hex: "EAEFEF"),
-                                             text: Color(hex: "333446"),
-                                             secondary: Color(hex: "B8CFCE")),
-        questions: [
-            OnboardingQuestion(
-                title: "How many cities are there in Türkiye?",
-                answerType: .singleChoice(options: ["Yes", "No", "Sometimes"])
-            )
-        ],
-        onboardingDescriptions: [
-            "You are not your thoughts.",
-            "Breathe. Write. Reflect.",
-            "This is your space now."
-        ]
-    )
-
-    let mockViewModel = OnboardingViewModel(configuration: mockConfiguration)
-
-    OnboardingView(viewModel: mockViewModel)
+    OnboardingView(viewModel: OnboardingViewModel(configuration: OnboardingConfiguration.mockConfig))
 }
