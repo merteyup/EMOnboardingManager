@@ -47,7 +47,7 @@ public struct OnboardingConfiguration {
             ),
             questions: [
                 OnboardingQuestion(
-                    title: "Do you have difficulties saying no?",
+                    title: "Are you having difficulties to say no?",
                     answerType: .singleChoice(options: ["Yes", "No", "Sometimes"])
                 ),
                 OnboardingQuestion(
