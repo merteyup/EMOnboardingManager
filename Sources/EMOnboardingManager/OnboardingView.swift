@@ -7,6 +7,14 @@
 
 import SwiftUI
 
+struct Paddings {
+    static let low: CGFloat = 12
+    static let mid: CGFloat = 18
+    static let high: CGFloat = 24
+    static let extraHigh: CGFloat = 32
+    static let extraExtraHigh: CGFloat = 48
+}
+
 public struct OnboardingView: View {
     @ObservedObject var viewModel: OnboardingViewModel
     @State private var textAnswer: String = ""
@@ -25,6 +33,7 @@ public struct OnboardingView: View {
                 // TODO: Add logo in here
                 viewModel.configuration.logoView()
                     .frame(width: 100, height: 100)
+                    .padding(.top, Paddings.extraHigh)
                 
                 Text("Welcome to Lumora")
                     .padding()
@@ -33,7 +42,7 @@ public struct OnboardingView: View {
                 
                 
                 QuestionView(question: question.title)
-                    .padding(.top, 48)
+                    .padding(.top, Paddings.extraExtraHigh)
             }
             .background(viewModel.configuration.colorPalette.text)
             .padding()
@@ -70,7 +79,7 @@ public struct OnboardingView: View {
                 Image(systemName: "arrowshape.forward.fill")
                     .font(.system(size: 32))
             }.frame(maxWidth: .infinity, alignment: .trailing)
-                .padding(.trailing, 32)
+                .padding(.trailing, Paddings.extraHigh)
 
         } else {
             Text("All done 🎉")
@@ -109,7 +118,7 @@ public struct ScaleSliderView: View {
     }
 
     public var body: some View {
-        VStack(spacing: 16) {
+        VStack(spacing: Paddings.mid) {
             HStack {
                 ForEach(Int(range.lowerBound)...Int(range.upperBound), id: \.self) { tick in
                     Text("\(tick)")
@@ -133,7 +142,7 @@ public struct TextInputView: View {
     @Binding var answer: String
     
     public var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
+        VStack(alignment: .leading, spacing: Paddings.low) {
             Text("Write your thoughts...")
                 .font(.headline)
 
