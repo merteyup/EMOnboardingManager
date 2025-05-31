@@ -24,8 +24,11 @@ public struct ScaleSliderView: View {
                         .font(.caption2)
                         .frame(maxWidth: .infinity)
                 }
-            }
+            }.padding(.horizontal, Paddings.high)
+
             Slider(value: $value, in: range, step: 1)
+                .padding(.horizontal, Paddings.high)
+                .tint(.primary)
                 
             
             Text("Selected: \(Int(value))")
@@ -34,4 +37,9 @@ public struct ScaleSliderView: View {
         }
         .padding(.horizontal)
     }
+}
+
+#Preview {
+    @State var value = 3.0
+    ScaleSliderView(range: 0...10, value: $value)
 }

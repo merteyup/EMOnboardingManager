@@ -18,11 +18,22 @@ public struct TextInputView: View {
             TextEditor(text: $answer)
                 .padding()
                 .frame(minHeight: 150)
+                .background(
+                    RoundedRectangle(cornerRadius: 12)
+                        .fill(Color.white)
+                )
                 .overlay(
                     RoundedRectangle(cornerRadius: 12)
                         .stroke(Color.gray.opacity(0.3), lineWidth: 1)
                 )
+
         }
         .padding()
     }
+}
+
+
+#Preview {
+    @State var answer = "Being alive is a gift"
+    TextInputView(answer: $answer)
 }
