@@ -10,6 +10,7 @@ import SwiftUI
 public enum OnboardingAnswerType {
     case singleChoice(options: [String])
     case multipleChoice(options: [String])
+    case multipleChoiceCapsule(options: [String])
     case scale
     case text
 }

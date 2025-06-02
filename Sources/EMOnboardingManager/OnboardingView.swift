@@ -10,8 +10,10 @@ import SwiftUI
 
 public struct OnboardingView: View {
     @ObservedObject var viewModel: OnboardingViewModel
+    @State private var selectedCapsules: Set<String> = []
     @State private var textAnswer: String = ""
     @State private var scaleAnswer: Double = 0.0
+    @State private var multipleAnswer: [String] = []
 
     public init(viewModel: OnboardingViewModel) {
         self.viewModel = viewModel
@@ -43,6 +45,7 @@ public struct OnboardingView: View {
     private var header: some View {
         VStack(spacing: 12) {
             ProgressBarView(viewModel: viewModel)
+                .padding(.top, Paddings.high)
 
             viewModel.configuration.logoView()
                 .frame(width: 100, height: 100)
@@ -86,6 +89,9 @@ public struct OnboardingView: View {
 
                     case .text:
                         TextInputView(answer: $textAnswer)
+                    case .multipleChoiceCapsule(options: let options):
+                        MultipleChoiceCapsuleView(selectedItems: $selectedCapsules,
+                                               allItems: options)
                     }
                 }
                 .frame(maxWidth: .infinity)
@@ -108,6 +114,8 @@ public struct OnboardingView: View {
             case .singleChoice, .multipleChoice:
                 // These are submitted from within the answer views.
                 break
+            case .multipleChoiceCapsule:
+                viewModel.submitAnswer(multipleAnswer)
             }
         } label: {
             Image(systemName: "arrowshape.forward.fill")

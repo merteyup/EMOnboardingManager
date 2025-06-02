@@ -47,6 +47,10 @@ public struct OnboardingConfiguration {
             ),
             questions: [
                 OnboardingQuestion(
+                    title: "Write one thought you keep returning to.",
+                    answerType: .multipleChoiceCapsule(options: ["Emptiness", "Joy", "Sadness", "Confusion", "Anxiety", "Anger", "Gratitude"])
+                ),
+                OnboardingQuestion(
                     title: "Are you having difficulties to say no?",
                     answerType: .singleChoice(options: ["Yes", "No", "Sometimes"])
                 ),
