@@ -91,7 +91,9 @@ public struct OnboardingView: View {
                         TextInputView(answer: $textAnswer)
                     case .multipleChoiceCapsule(options: let options):
                         MultipleChoiceCapsuleView(selectedItems: $selectedCapsules,
-                                               allItems: options)
+                                                  allItems: options
+                        )
+                        .padding()
                     }
                 }
                 .frame(maxWidth: .infinity)
@@ -115,7 +117,8 @@ public struct OnboardingView: View {
                 // These are submitted from within the answer views.
                 break
             case .multipleChoiceCapsule:
-                viewModel.submitAnswer(multipleAnswer)
+                print("SelectedItems: \(selectedCapsules)")
+                viewModel.submitAnswer(selectedCapsules)
             }
         } label: {
             Image(systemName: "arrowshape.forward.fill")
