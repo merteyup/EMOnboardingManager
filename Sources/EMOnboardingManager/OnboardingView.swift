@@ -25,7 +25,7 @@ public struct OnboardingView: View {
                 header
 
                 QuestionView(question: question.title)
-                    .padding(.top, Paddings.extraExtraHigh)
+                    .padding(.top, Paddings.mid)
                     .padding(.horizontal, Paddings.mid)
 
                 answerInput(for: question)
@@ -43,7 +43,7 @@ public struct OnboardingView: View {
     // MARK: - Header
 
     private var header: some View {
-        VStack(spacing: 12) {
+        VStack(spacing: Paddings.low) {
             ProgressBarView(viewModel: viewModel)
                 .padding(.top, Paddings.high)
 

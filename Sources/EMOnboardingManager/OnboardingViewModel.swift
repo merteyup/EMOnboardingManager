@@ -26,7 +26,7 @@ public final class OnboardingViewModel: ObservableObject {
 
     public func submitAnswer(_ answer: Any) {
         guard let question = currentQuestion else { return }
-        answers[question.id] = answer
+        answers[question.id] = [question: answer]
         currentIndex += 1
     }
 
