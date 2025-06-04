@@ -47,6 +47,10 @@ public struct OnboardingConfiguration {
             ),
             questions: [
                 OnboardingQuestion(
+                    title: "What would you like to improve most right now?",
+                    answerType: .multipleChoice(options: ["Self-confidence", "Inner peace", "Focus", "Communication", "Relationships", "Letting go", "Gratitude"])
+                ),
+                OnboardingQuestion(
                     title: "What emotions do you experience the most lately?",
                     answerType: .multipleChoiceCapsule(options: ["Emptiness", "Confusion", "Sadness", "Anger", "Anxiety", "Joy", "Gratitude"])
                 ),

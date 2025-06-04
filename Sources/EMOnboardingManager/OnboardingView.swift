@@ -82,7 +82,9 @@ public struct OnboardingView: View {
                         }
 
                     case .multipleChoice(let options):
-                        MultipleChoiceView()
+                        MultipleChoiceView(options: options) { selectedIndexes in
+                            viewModel.submitAnswer(selectedIndexes)
+                        }.padding(.leading, Paddings.extraHigh)
 
                     case .scale:
                         ScaleSliderView(range: 0...10, value: $scaleAnswer)
