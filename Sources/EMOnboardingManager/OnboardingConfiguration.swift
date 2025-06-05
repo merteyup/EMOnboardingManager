@@ -76,3 +76,26 @@ public struct OnboardingConfiguration {
     }
 }
 
+public extension OnboardingConfiguration {
+    static func defaultConfiguration(
+        logoView: @escaping () -> some View,
+        appTitle: String = "Welcome",
+        colorPalette: OnboardingColorPalette = OnboardingColorPalette(
+            accent: .blue,
+            background: .white,
+            text: .primary,
+            secondary: .gray.opacity(0.3)
+        ),
+        questions: [OnboardingQuestion] = [],
+        descriptions: [String] = []
+    ) -> OnboardingConfiguration {
+        .init(
+            logoView: logoView,
+            appTitle: appTitle,
+            colorPalette: colorPalette,
+            questions: questions,
+            onboardingDescriptions: descriptions
+        )
+    }
+}
+
